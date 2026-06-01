@@ -2,7 +2,7 @@ export const personal = {
   name: 'Benjamin van Tonder',
   tagline: 'full-stack developer & UI architect',
   email: 'vantonderbenna@gmail.com',
-  github: 'https://benjaminvantonder.github.io',
+  github: 'https://github.com/benjaminvantonder',
   location: 'Centurion, Gauteng',
 };
 
@@ -74,6 +74,6 @@ export const projects: Project[] = [
 ];
 
 export const socials = [
-  { label: 'github', url: 'https://benjaminvantonder.github.io' },
+  { label: 'github', url: 'https://github.com/benjaminvantonder' },
   { label: 'email', url: 'mailto:vantonderbenna@gmail.com' },
 ];

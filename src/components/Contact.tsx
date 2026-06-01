@@ -26,13 +26,26 @@ export default function Contact() {
           </p>
 
           <form
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={(e) => {
+              e.preventDefault();
+              const data = new FormData(e.currentTarget);
+              const name = data.get('name') as string;
+              const email = data.get('email') as string;
+              const message = data.get('message') as string;
+              const subject = encodeURIComponent(`Message from ${name}`);
+              const body = encodeURIComponent(
+                `From: ${name} (${email})\n\n${message}`,
+              );
+              window.location.href = `mailto:${personal.email}?subject=${subject}&body=${body}`;
+            }}
             style={{ display: 'flex', flexDirection: 'column', gap: 16 }}
           >
             <div className="form-grid">
               <input
                 type="text"
+                name="name"
                 placeholder="name"
+                required
                 style={{
                   fontFamily: 'var(--font-mono)',
                   fontSize: '0.85rem',
@@ -49,7 +62,9 @@ export default function Contact() {
               />
               <input
                 type="email"
+                name="email"
                 placeholder="email"
+                required
                 style={{
                   fontFamily: 'var(--font-mono)',
                   fontSize: '0.85rem',
@@ -66,8 +81,10 @@ export default function Contact() {
               />
             </div>
             <textarea
+              name="message"
               placeholder="message"
               rows={4}
+              required
               style={{
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.85rem',
@@ -102,9 +119,12 @@ export default function Contact() {
             <span className="terminal-prompt" style={{ fontSize: '0.8rem' }}>
               echo $EMAIL
             </span>
-            <span style={{ color: 'var(--text-secondary)', marginLeft: 20 }}>
+            <a
+              href={`mailto:${personal.email}`}
+              style={{ color: 'var(--text-secondary)', marginLeft: 20 }}
+            >
               {personal.email}
-            </span>
+            </a>
           </div>
         </div>
       </div>
